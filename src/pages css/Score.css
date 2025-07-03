@@ -1,0 +1,31 @@
+.score-container {
+  text-align: center;
+  padding: 40px;
+  background-color: #f0f8ff;
+  max-width: 600px;
+  margin: 50px auto;
+  border-radius: 10px;
+  box-shadow: 0 0 8px rgba(0,0,0,0.2);
+}
+
+.score-container h1 {
+  color: #0077cc;
+}
+
+.score-buttons {
+  margin-top: 20px;
+}
+
+.score-buttons button {
+  margin: 10px;
+  padding: 10px 20px;
+  background-color: #0077cc;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.score-buttons button:hover {
+  background-color: #005fa3;
+}

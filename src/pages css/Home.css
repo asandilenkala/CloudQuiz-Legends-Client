@@ -1,0 +1,25 @@
+.filter-container .search-bar {
+    background-color: #cec6c6;
+    border: none;
+    border-radius: 15px;
+    height: 30px;
+    width: 250px;
+}
+
+.button-link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    list-style: none;
+  
+}
+
+.button {
+    background-color: #5fbac0;
+    border: none;
+    border-radius: 10px;
+    font-size: 18px;
+    width: 200px;
+    height: 40px;
+}

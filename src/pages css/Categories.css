@@ -1,0 +1,16 @@
+.button-links {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    list-style: none;
+}
+
+.buttons {
+    background-color: #5fbac0;
+    border: none;
+    border-radius: 10px;
+    font-size: 18px;
+    width: 200px;
+    height: 200px;
+}

@@ -1,0 +1,50 @@
+.leaderboard-select-list {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    list-style: none;
+}
+
+.leaderboard-select {
+    background-color: #5fbac0;
+    border: none;
+    border-radius: 10px;
+    font-size: 18px;
+    width: 250px;
+    height: 40px;
+}
+
+
+.leaderboard-heading {
+  text-align: center;
+  color: #0077cc;
+  margin-top: 20px;
+  font-size: 28px;
+}
+
+
+
+.leaderboard-table {
+  width: 80%;
+  margin: 0 auto;
+  border-collapse: collapse;
+  background-color: #e6f2ff;
+  box-shadow: 0 0 5px rgba(0,0,0,0.2);
+}
+
+.leaderboard-table th,
+.leaderboard-table td {
+  padding: 12px;
+  border: 1px solid #0077cc;
+  text-align: center;
+}
+
+.leaderboard-table th {
+  background-color: #0077cc;
+  color: white;
+}
+
+.leaderboard-table tr:hover {
+  background-color: #d9eaf7;
+}
