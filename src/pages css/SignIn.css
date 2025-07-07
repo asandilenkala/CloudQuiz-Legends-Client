@@ -12,11 +12,11 @@
 .continue-with-google-button {
     background-color: rgb(58, 125, 180);}
 
-.continue-as-email-button {
+.continue-with-email-button {
     background-color: rgba(131, 130, 130, 0.445);
 }
 
-.continue-with-google-button, .continue-as-email-button {
+.continue-with-google-button, .continue-with-email-button {
     gap: 40px;
     display: flex;
     border: none;
@@ -33,7 +33,7 @@
 
 }
 
-.continue-as-email-button a {
+.continue-with-email-button a {
     text-decoration: none;
     display: block;
     padding: 10px 0;

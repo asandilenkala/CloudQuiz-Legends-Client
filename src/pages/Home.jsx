@@ -32,7 +32,7 @@ const Home = () => {
             </div>
 
            <h1>Welcome to CloudQuiz!</h1>
-           <p>Learn. Compete. Master.</p>
+           <p>🧠Learn. ⚔️Compete. 🏆Master.</p>
            <br/>
            <ul className='button-link'>
                <li><button className='button' onClick={goToQuiz}><strong>Start Quiz</strong></button></li>

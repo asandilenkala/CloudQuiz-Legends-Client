@@ -12,6 +12,7 @@ import Score from './pages/Score';
 import WelcomePage from './pages/WelcomePage';
 import SignIn from './pages/SignIn';
 import SignUp from './pages/SignUp';
+import SignInForm from './pages/SignInForm';
 
 function App() {
   return (
@@ -30,6 +31,7 @@ function App() {
         <Route path="/welcome" element={<WelcomePage/>} />
         <Route path="sign-in" element={<SignIn/>}/>
         <Route path="sign-up" element={<SignUp/>}/>
+        <Route path="continue-with-email" element={<SignInForm/>}/>
       </Routes>
     </div>  
     

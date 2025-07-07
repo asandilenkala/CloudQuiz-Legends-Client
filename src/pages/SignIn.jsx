@@ -14,8 +14,8 @@ const SignIn = () => {
                     <Link to='/continue-with-google'>Continue with Google</Link>
                 </button>
                 <br/>
-                <button className='continue-as-email-button'>  
-                    <Link to='/continue-as-email'>Continue as Email</Link>
+                <button className='continue-with-email-button'>  
+                    <Link to='/continue-with-email'>Continue with Email</Link>
                 </button>
             </div>
 

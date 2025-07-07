@@ -1,0 +1,27 @@
+.signin-container {
+  width: 350px;
+  margin: 60px auto;
+  padding: 20px;
+  background: #f0f2f5;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.15);
+}
+
+.signin-form input {
+  width: 100%;
+  padding: 12px;
+  margin: 12px 0;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+}
+
+.signin-form button {
+  width: 100%;
+  padding: 12px;
+  background-color: #0077cc;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-weight: bold;
+  cursor: pointer;
+}
