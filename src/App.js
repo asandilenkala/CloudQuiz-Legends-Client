@@ -9,12 +9,16 @@ import Categories from './pages/Categories';
 import Leaderboard from './pages/Leaderboard';
 import Quiz from './pages/Quiz';
 import Score from './pages/Score';
+import WelcomePage from './pages/WelcomePage';
+import SignIn from './pages/SignIn';
+import SignUp from './pages/SignUp';
 
 function App() {
   return (
     <BrowserRouter>
     <Navbar/>
     <Sidebar/>
+    
     
     <div className="main-content">
       <Routes>
@@ -23,7 +27,10 @@ function App() {
         <Route path="/leaderboard" element={<Leaderboard />} />
         <Route path="/quiz" element={<Quiz />} />
         <Route path="/score" element={<Score />} />
-        </Routes>
+        <Route path="/welcome" element={<WelcomePage/>} />
+        <Route path="sign-in" element={<SignIn/>}/>
+        <Route path="sign-up" element={<SignUp/>}/>
+      </Routes>
     </div>  
     
     

@@ -18,6 +18,7 @@ const Home = () => {
     const goToQuiz = () => {
       navigate('/quiz');
     }
+    
     return (
         <>
            <div className="filter-container">

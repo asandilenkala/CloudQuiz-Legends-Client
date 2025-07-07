@@ -1,0 +1,31 @@
+.signup-form-container {
+  width: 350px;
+  margin: 50px auto;
+  padding: 20px;
+  background: #f3f3f3;
+  border-radius: 10px;
+}
+
+.signup-form input,
+.signup-form select {
+  width: 100%;
+  padding: 10px;
+  margin: 10px 0;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.signup-form button {
+  width: 100%;
+  padding: 10px;
+  background-color: #0077cc;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.sign-up-buttons {
+    display: flex;
+    gap: 40px;
+}

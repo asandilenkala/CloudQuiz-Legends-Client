@@ -1,0 +1,57 @@
+.sign-in-logo {
+    width: 200px;
+    height: 200px;
+}
+
+.sign-in-buttons {
+    align-items: center;     /* vertical center */
+    justify-content: center; /* horizontal center */
+    text-align: center;
+}
+
+.continue-with-google-button {
+    background-color: rgb(58, 125, 180);}
+
+.continue-as-email-button {
+    background-color: rgba(131, 130, 130, 0.445);
+}
+
+.continue-with-google-button, .continue-as-email-button {
+    gap: 40px;
+    display: flex;
+    border: none;
+    font-size: 18px;
+    width: 250px;
+    height: 45px;
+}
+
+.continue-with-google-button a {
+    text-decoration: none;
+    display: block;
+    padding: 10px 0;
+    color: white;
+
+}
+
+.continue-as-email-button a {
+    text-decoration: none;
+    display: block;
+    padding: 10px 0;
+    color: black
+}
+
+.sign-in-links {
+    display: flex;
+    gap: 40px;
+    list-style: none;
+    align-items: center;     /* vertical center */
+    justify-content: center; /* horizontal center */
+    text-align: center;
+}
+
+.sign-in-links li a {
+    text-decoration: none;
+    display: block;
+    padding: 10px 0;
+    color: rgb(30, 134, 175);
+}

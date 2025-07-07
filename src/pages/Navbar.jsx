@@ -9,7 +9,7 @@ const Navbar = () => {
       <ul className="navbar-links">
         <li><Link to='/home'>Home</Link></li>
         <li><Link to='/profile'>Profile</Link></li>
-        <li><Link to='/logout'>Logout</Link></li>
+        <li><Link to='/welcome'>Logout</Link></li>
       </ul>
     </div>
   );
