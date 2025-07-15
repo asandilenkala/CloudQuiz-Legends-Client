@@ -1,5 +1,5 @@
 import React from 'react';
-import { useSubscription } from '../contexts/SubscriptionContext';
+import { useSubscription } from './SubscriptionContext';
 import { useNavigate } from 'react-router-dom';
 
 const Subscription = () => {
