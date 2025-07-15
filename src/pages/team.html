@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" href="%PUBLIC_URL%/App Logo.png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#000000" />
+    <meta name="description" content="Meet the creators of Cloud Quiz Legends." />
+    <title>Team - Cloud Quiz Legends</title>
+
+    <!-- AOS CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet" />
+
+    <style>
+      body {
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        margin: 0;
+        padding: 20px;
+        background-color: #e9f2fb;
+        color: #1c1c1c;
+      }
+
+      h1 {
+        text-align: center;
+        margin-bottom: 40px;
+        color: #003366;
+      }
+
+      .team-container {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 30px;
+        max-width: 1200px;
+        margin: 0 auto;
+      }
+
+      .team-member {
+        background-color: #ffffff;
+        border: 1px solid #cfe2f3;
+        border-radius: 12px;
+        padding: 20px;
+        width: 260px;
+        text-align: center;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.06);
+        transition: transform 0.3s ease;
+        cursor: default;
+      }
+
+      .team-member img {
+        width: 110px;
+        height: 110px;
+        object-fit: cover;
+        border-radius: 50%;
+        margin-bottom: 15px;
+        border: 2px solid #007acc;
+      }
+
+      .name {
+        font-size: 1.15em;
+        font-weight: 600;
+        color: #003366;
+        margin-bottom: 5px;
+      }
+
+      .role {
+        font-size: 0.95em;
+        color: #444;
+      }
+
+      a {
+        display: block;
+        text-align: center;
+        margin-top: 50px;
+        color: #005ea2;
+        text-decoration: none;
+        font-weight: 500;
+      }
+
+      a:hover {
+        text-decoration: underline;
+      }
+    </style>
+  </head>
+
+  <body>
+    <h1>Meet the Cloud Quiz Legends Team</h1>
+
+    <div class="team-container">
+      <div class="team-member">
+        <img src="asandile.jfif" alt="Asandile" />
+		<div class="image-tooltip">Asandile</div>
+        <div class="name">Asandile Nkala</div>
+        <div class="role">Lead Developer & Software Engineer</div>
+      </div>
+
+      <div class="team-member">
+        <img src="boka.jfif" alt="Boka" />
+		<div class="image-tooltip">Boka</div>
+        <div class="name">Boka Mokoena</div>
+        <div class="role">Backend Engineer (Node.js & MongoDB)</div>
+      </div>
+
+      <div class="team-member">
+        <img src="zintlanu_preview_rev_1.png" alt="Zintlanu" />
+		<div class="image-tooltip">Zintlanu</div>
+        <div class="name">Zintlanu Bozana</div>
+        <div class="role">Frontend Designer (React + UX/UI)</div>
+      </div>
+
+      <div class="team-member">
+        <img src="esihle_preview_rev_1.png" alt="Esihle" />
+		<div class="image-tooltip">Esihle</div>
+        <div class="name">Esihle Mbangeleli</div>
+        <div class="role">Developer</div>
+      </div>
+
+      <div class="team-member">
+        <img src="teddy.jfif" alt="Mavuso" />
+		<div class="image-tooltip">Mavuso</div>
+        <div class="name">Mavuso Williams</div>
+        <div class="role">Developer & Deployment (Vercel + GitHub Actions)</div>
+      </div>
+
+      <div class="team-member">
+        <img src="akholiwe.jfif" alt="Akholiwe" />
+		<div class="image-tooltip">Akholiwe</div>
+        <div class="name">Akholiwe Mabindisa</div>
+        <div class="role">Quality Assurance & Test Automation</div>
+      </div>
+    </div>
+
+    <a href="index.html">← Back to Home</a>
+
+    <!-- AOS JS -->
+    <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+    <script>
+      AOS.init();
+
+      // Minimal JS hover effect for interactivity (optional enhancement)
+      document.querySelectorAll(".team-member").forEach((member) => {
+        member.addEventListener("mouseenter", () => {
+          member.style.transform = "scale(1.03)";
+        });
+        member.addEventListener("mouseleave", () => {
+          member.style.transform = "scale(1)";
+        });
+      });
+    </script>
+	
+<style>
+  .team-member {
+  position: relative;
+}
+
+.image-tooltip {
+  position: absolute;
+  bottom: 130px; /* above the image */
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(0, 0, 0, 0.6); /* subtle transparent dark background */
+  color: #fff;
+  padding: 4px 10px;
+  border-radius: 5px;
+  font-size: 0.8em;
+  white-space: nowrap;
+  opacity: 0;
+  transition: opacity 0.25s ease;
+  pointer-events: none;
+  z-index: 2;
+}
+
+.team-member img:hover + .image-tooltip {
+  opacity: 1;
+}
+
+</style>
+
+<div id="fixed-tooltip"></div>
+
+<script>
+  const tooltip = document.getElementById("fixed-tooltip");
+
+  document.querySelectorAll(".team-member img").forEach((img) => {
+    const name = img.getAttribute("alt");
+
+    img.addEventListener("mouseenter", () => {
+      tooltip.textContent = name;
+      tooltip.style.opacity = "1";
+    });
+
+    img.addEventListener("mouseleave", () => {
+      tooltip.style.opacity = "0";
+    });
+  });
+</script>
+  </body>
+</html>
