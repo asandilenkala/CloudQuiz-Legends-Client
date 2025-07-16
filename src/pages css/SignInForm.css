@@ -1,27 +1,49 @@
 .signin-container {
-  width: 350px;
-  margin: 60px auto;
-  padding: 20px;
-  background: #f0f2f5;
-  border-radius: 10px;
-  box-shadow: 0 0 10px rgba(0,0,0,0.15);
+  width: 100%;
+  max-width: 380px;
+  margin: 70px auto;
+  padding: 25px 20px;
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 14px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  transition: all 0.3s ease;
 }
 
 .signin-form input {
   width: 100%;
-  padding: 12px;
-  margin: 12px 0;
-  border: 1px solid #ccc;
-  border-radius: 6px;
+  padding: 12px 14px;
+  margin: 14px 0;
+  border: 1.5px solid #ddd;
+  border-radius: 8px;
+  font-size: 16px;
+  background-color: #ffffff;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.signin-form input:focus {
+  border-color: #0077cc;
+  box-shadow: 0 0 6px rgba(0, 119, 204, 0.3);
+  outline: none;
 }
 
 .signin-form button {
   width: 100%;
-  padding: 12px;
-  background-color: #0077cc;
-  color: white;
+  padding: 14px 0;
+  background: linear-gradient(135deg, #36d1dc, #5b86e5);
+  color: #ffffff;
   border: none;
-  border-radius: 6px;
-  font-weight: bold;
+  border-radius: 10px;
+  font-weight: 600;
+  font-size: 17px;
   cursor: pointer;
+  box-shadow: 0 6px 14px rgba(91, 134, 229, 0.4);
+  transition: background 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+}
+
+.signin-form button:hover {
+  background: linear-gradient(135deg, #2bb4bf, #4a6cd4);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(74, 108, 212, 0.5);
 }

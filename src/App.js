@@ -1,8 +1,8 @@
 import React from 'react';
-import { Routes, Route } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom';
 import './App.css';
-import Navbar from './pages/Navbar';
-import Sidebar from './pages/Sidebar';
+import NavbarWrapper from './pages/NavbarWrapper';
+import SidebarWrapper from './pages/SidebarWrapper';
 import Footer from './pages/Footer';
 import Home from './pages/Home';
 import Categories from './pages/Categories';
@@ -17,17 +17,28 @@ import Profile from './pages/Profile';
 import Classroom from './pages/Classroom';
 import SubscriptionForm from './pages/SubscriptionForm';
 
-// Inside <Routes> in App component:
-<Route path="/subscribe" element={<SubscriptionForm />} />
+function AppContent() {
+  const location = useLocation();
 
+  // Paths that should use full-screen mode without navbar/sidebar
+  const fullScreenPaths = [
+    '/welcome',
+    '/sign-in',
+    '/quiz',
+    '/score',
+    '/sign-up',
+    '/continue-with-email',
+    '/subscription'
+  ];
 
-function App() {
+  const isFullScreen = fullScreenPaths.includes(location.pathname);
+
   return (
     <>
-      <Navbar />
-      <Sidebar />
+      {!isFullScreen && <NavbarWrapper />}
+      {!isFullScreen && <SidebarWrapper />}
 
-      <div className="main-content">
+      <div className={isFullScreen ? "main-content-2" : "main-content"}>
         <Routes>
           <Route path="/home" element={<Home />} />
           <Route path="/categories" element={<Categories />} />
@@ -44,8 +55,16 @@ function App() {
         </Routes>
       </div>
 
-      <Footer />
+      {!isFullScreen && <Footer />}
     </>
+  );
+}
+
+function App() {
+  return (
+    <BrowserRouter>
+      <AppContent />
+    </BrowserRouter>
   );
 }
 

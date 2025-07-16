@@ -37,6 +37,7 @@
   }
 }
 
+/* Existing main content styles */
 .main-content {
   position: absolute;
   top: 60px;           /* below navbar */
@@ -51,7 +52,43 @@
   display: flex;
   align-items: center;     /* vertical center */
   justify-content: center; /* horizontal center */
-  flex-direction: column;  /* optional: stack children vertically */
-  text-align: center;      /* optional: center text */
+  flex-direction: column;  /* stack children vertically */
+  text-align: center;      /* center text */
+  transition: all 0.3s ease;
+}
+
+/* When navbar and sidebar are hidden, main-content fills the whole viewport */
+.main-content.full-width {
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  padding: 20px;
+
+  /* Keep centering */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  text-align: center;
+}
+
+.main-content-2 {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  padding: 20px;
+  overflow-y: auto;
+  background-color: #f7f7f7;
+
+  /* Center content */
+  display: flex;
+  align-items: center;     /* vertical center */
+  justify-content: center; /* horizontal center */
+  flex-direction: column;  /* stack children vertically */
+  text-align: center;      /* center text */
+  transition: all 0.3s ease;
 }
 

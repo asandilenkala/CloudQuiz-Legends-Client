@@ -1,23 +1,24 @@
 /* SubscriptionForm.css */
-/* Outer wrapper for creative background */
+
+/* Outer wrapper with soft gradient */
 .subscription-wrapper {
   min-height: 100vh;
-  background: linear-gradient(135deg, #74ebd5, #acb6e5);
+  background: linear-gradient(135deg, #a1c4fd, #c2e9fb);
   display: flex;
   justify-content: center;
   align-items: center;
   padding: 2rem;
 }
 
-/* Main form container with a glass effect */
+/* Glass-effect container */
 .subscription-container {
   width: 100%;
   max-width: 500px;
-  background-color: rgba(255, 255, 255, 0.85);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  border-radius: 16px;
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+  background: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-radius: 18px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
   padding: 2rem;
   animation: fadeIn 0.6s ease-in-out;
   transition: all 0.3s ease;
@@ -38,8 +39,9 @@
   text-align: center;
   margin-bottom: 1.5rem;
   color: #222;
-  font-size: 1.8rem;
+  font-size: 1.9rem;
   font-weight: 700;
+  letter-spacing: 0.5px;
 }
 
 .subscription-form label {
@@ -52,12 +54,20 @@
 .subscription-form input,
 .subscription-form select {
   width: 100%;
-  padding: 0.75rem;
-  margin-bottom: 1rem;
-  border-radius: 8px;
-  border: 1px solid #ccc;
+  padding: 0.8rem 1rem;
+  margin-bottom: 1.2rem;
+  border-radius: 10px;
+  border: 1.5px solid #ccc;
   font-size: 1rem;
-  background-color: #fff;
+  background-color: #ffffff;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.subscription-form input:focus,
+.subscription-form select:focus {
+  border-color: #3f51b5;
+  box-shadow: 0 0 6px rgba(63, 81, 181, 0.3);
+  outline: none;
 }
 
 .subscription-form input[type="checkbox"] {
@@ -79,51 +89,59 @@
 
 .subscription-form .submit-button {
   width: 100%;
-  padding: 0.9rem;
-  background-color: #4caf50;
+  padding: 1rem;
+  background: linear-gradient(135deg, #36d1dc, #5b86e5);
   color: white;
   border: none;
-  border-radius: 10px;
-  font-size: 1rem;
-  font-weight: bold;
+  border-radius: 12px;
+  font-size: 1.05rem;
+  font-weight: 700;
   cursor: pointer;
-  transition: background-color 0.2s ease, transform 0.2s ease;
+  box-shadow: 0 6px 15px rgba(91, 134, 229, 0.4);
+  transition: background 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
 }
 
 .subscription-form .submit-button:hover {
-  background-color: #3e8e41;
-  transform: scale(1.02);
+  background: linear-gradient(135deg, #2bb4bf, #4a6cd4);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(74, 108, 212, 0.5);
 }
 
 .subscription-comparison {
-  background: #f4f4f4;
-  padding: 1rem;
-  border-radius: 10px;
+  background: #f9f9f9;
+  padding: 1.2rem;
+  border-radius: 12px;
   margin-bottom: 1.5rem;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
 }
 
 .subscription-comparison h4 {
   margin-bottom: 0.5rem;
   color: #555;
+  font-weight: 600;
 }
 
 .subscription-comparison ul {
   list-style-type: disc;
   margin-left: 1.2rem;
   color: #333;
+  font-size: 0.95rem;
+  line-height: 1.5;
 }
 
 .agreement {
   margin-top: 1rem;
+  font-size: 0.9rem;
+  color: #555;
 }
 
-/* Responsive */
+/* Responsive tweaks */
 @media (max-width: 600px) {
   .subscription-container {
     padding: 1.5rem;
   }
 
   .subscription-container h2 {
-    font-size: 1.5rem;
+    font-size: 1.6rem;
   }
 }

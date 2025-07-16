@@ -1,31 +1,43 @@
 .score-container {
   text-align: center;
-  padding: 40px;
-  background-color: #f0f8ff;
+  padding: 50px 30px;
+  background: linear-gradient(135deg, #e0f7fa, #e1f5fe);
   max-width: 600px;
-  margin: 50px auto;
-  border-radius: 10px;
-  box-shadow: 0 0 8px rgba(0,0,0,0.2);
+  margin: 60px auto;
+  border-radius: 14px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+  transition: all 0.3s ease;
 }
 
 .score-container h1 {
   color: #0077cc;
+  font-size: 2rem;
+  margin-bottom: 20px;
 }
 
 .score-buttons {
-  margin-top: 20px;
+  margin-top: 25px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+  justify-content: center;
 }
 
 .score-buttons button {
-  margin: 10px;
-  padding: 10px 20px;
-  background-color: #0077cc;
+  padding: 12px 24px;
+  background: linear-gradient(135deg, #36d1dc, #5b86e5);
   color: white;
   border: none;
-  border-radius: 5px;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 600;
   cursor: pointer;
+  box-shadow: 0 4px 12px rgba(91, 134, 229, 0.3);
+  transition: background 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
 }
 
 .score-buttons button:hover {
-  background-color: #005fa3;
+  background: linear-gradient(135deg, #2bb4bf, #4a6cd4);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(74, 108, 212, 0.4);
 }
