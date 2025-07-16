@@ -1,25 +1,47 @@
 .filter-container .search-bar {
-    background-color: #cec6c6;
-    border: none;
-    border-radius: 15px;
-    height: 30px;
-    width: 250px;
+  background-color: #e0e0e0;
+  border: none;
+  border-radius: 20px;
+  height: 36px;
+  width: 280px;
+  padding: 0 15px;
+  font-size: 16px;
+  color: #333;
+  box-shadow: inset 2px 2px 5px rgba(0,0,0,0.1);
+  transition: background-color 0.3s ease;
+}
+
+.filter-container .search-bar:focus {
+  background-color: #f9f9f9;
+  outline: none;
+  box-shadow: 0 0 5px 2px #5fbac0;
 }
 
 .button-link {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 20px;
-    list-style: none;
-  
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 24px;
+  list-style: none;
+  padding: 0;
+  margin: 0;
 }
 
 .button {
-    background-color: #5fbac0;
-    border: none;
-    border-radius: 10px;
-    font-size: 18px;
-    width: 200px;
-    height: 40px;
+  background: linear-gradient(135deg, #43c6ac, #5fbac0);
+  border: none;
+  border-radius: 14px;
+  font-size: 18px;
+  width: 220px;
+  height: 44px;
+  color: white;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: 0 6px 12px rgba(95, 186, 192, 0.5);
+  transition: background 0.3s ease, box-shadow 0.3s ease;
+}
+
+.button:hover {
+  background: linear-gradient(135deg, #36a89a, #4da1a6);
+  box-shadow: 0 8px 16px rgba(77, 161, 166, 0.7);
 }

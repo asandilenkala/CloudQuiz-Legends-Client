@@ -1,18 +1,31 @@
 .button-links {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 20px;
-    list-style: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 24px;
+  list-style: none;
+  padding: 0;
+  margin: 0;
 }
 
 .buttons {
-    background-color: #5fbac0;
-    border: none;
-    border-radius: 10px;
-    font-size: 18px;
-    width: 200px;
-    height: 200px;
+  background-color: #4fc3c9; /* slightly softer teal */
+  border: none;
+  border-radius: 14px;
+  font-size: 20px;
+  width: 200px;
+  height: 200px;
+  color: white;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: 0 6px 12px rgba(79, 195, 201, 0.4);
+  transition: background-color 0.3s ease, box-shadow 0.3s ease, transform 0.2s ease;
+}
+
+.buttons:hover {
+  background-color: #2a9d9f;
+  box-shadow: 0 8px 20px rgba(42, 157, 159, 0.6);
+  transform: translateY(-4px);
 }
 
 /* Modal background */
@@ -22,51 +35,80 @@
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: rgba(0, 0, 0, 0.6); /* slightly darker overlay */
   display: flex;
   justify-content: center;
   align-items: center;
-  z-index: 999;
+  z-index: 9999;
+  animation: fadeInOverlay 0.3s ease forwards;
+}
+
+@keyframes fadeInOverlay {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
 
 /* Modal content box */
 .modal-content {
-  background-color: white;
-  padding: 30px;
-  border-radius: 10px;
-  max-width: 500px;
+  background-color: #fff;
+  padding: 32px 36px;
+  border-radius: 16px;
+  max-width: 520px;
   width: 90%;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+  animation: slideDown 0.3s ease forwards;
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 /* Close button */
 .close-button {
-  margin-top: 20px;
-  padding: 8px 16px;
-  background-color: #5fb2c0;
+  margin-top: 24px;
+  padding: 10px 20px;
+  background-color: #4fc3c9;
   border: none;
   color: white;
-  font-weight: bold;
-  border-radius: 6px;
+  font-weight: 700;
+  border-radius: 8px;
   cursor: pointer;
+  box-shadow: 0 4px 12px rgba(79, 195, 201, 0.5);
+  transition: background-color 0.3s ease, box-shadow 0.3s ease, transform 0.15s ease;
+  display: inline-block;
 }
 
 .close-button:hover {
-  background-color: #0077cc;
+  background-color: #2a9d9f;
+  box-shadow: 0 6px 16px rgba(42, 157, 159, 0.7);
+  transform: translateY(-2px);
 }
 
 .subcat-button {
-  background: none;
+  background: transparent;
   border: none;
   text-align: left;
-  padding: 10px 0;
+  padding: 12px 0;
   cursor: pointer;
   width: 100%;
-  font-size: 1rem;
-  color: #333;
+  font-size: 1.05rem;
+  color: #444;
+  font-weight: 500;
+  transition: color 0.3s ease, text-decoration 0.3s ease;
 }
 
 .subcat-button:hover {
-  color: #0077cc;
+  color: #2a9d9f;
   text-decoration: underline;
 }
