@@ -1,11 +1,14 @@
 // Pages/Score.jsx
 import React from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
+import Confetti from 'react-confetti';
+import useWindowSize from 'react-use/lib/useWindowSize';
 import '../pages css/Score.css';
 
 const Score = () => {
   const { state } = useLocation();
   const navigate = useNavigate();
+  const { width, height } = useWindowSize(); // For confetti
 
   if (!state) {
     return <p>No score available. Try a quiz first.</p>;
@@ -33,6 +36,9 @@ const Score = () => {
 
   return (
     <div className="score-container">
+      {/* 🎉 Confetti Celebration for 80%+ */}
+      {percentage >= 80 && <Confetti width={width} height={height} />}
+      
       <h1>Quiz Results</h1>
       <p>You scored {score} out of {total}</p>
       <p>Percentage: {percentage}%</p>
@@ -47,3 +53,4 @@ const Score = () => {
 };
 
 export default Score;
+
