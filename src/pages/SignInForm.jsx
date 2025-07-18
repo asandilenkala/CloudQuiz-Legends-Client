@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import '../pages css/SignInForm.css';
 
 const SignInForm = () => {
@@ -6,6 +7,9 @@ const SignInForm = () => {
     email: '',
     password: ''
   });
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState('');
+  const navigate = useNavigate();
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -15,10 +19,40 @@ const SignInForm = () => {
     }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log('Logging in with:', formData);
-    // Send formData to backend here (e.g., axios.post)
+    setLoading(true);
+    setError('');
+
+    try {
+      const response = await fetch('https://pjvhyb29se.execute-api.us-east-1.amazonaws.com/dev/login', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(formData)
+      });
+
+      if (response.ok) {
+        const data = await response.json();
+        console.log('Login Success:', data);
+
+        // Store user data in localStorage for session handling
+        localStorage.setItem('user', JSON.stringify(data.user));
+
+        // Navigate to home/dashboard on successful login
+        navigate('/home');
+      } else {
+        const errorData = await response.json();
+        console.error('Login Failed:', errorData);
+        setError(errorData.message || 'Login failed. Please try again.');
+      }
+    } catch (err) {
+      console.error('Error:', err);
+      setError('An error occurred. Please try again later.');
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -43,7 +77,11 @@ const SignInForm = () => {
           required
         />
 
-        <button type="submit">Log In</button>
+        {error && <p className="error-message">{error}</p>}
+
+        <button type="submit" disabled={loading}>
+          {loading ? 'Logging In...' : 'Log In'}
+        </button>
       </form>
     </div>
   );
