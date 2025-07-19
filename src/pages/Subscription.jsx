@@ -1,30 +1,16 @@
-import React from 'react';
-import { useSubscription } from './SubscriptionContext';
-import { useNavigate } from 'react-router-dom';
+const handleSubscribe = async () => {
+  setIsSubscriber(true);
+  alert('Thank you for subscribing!');
 
-const Subscription = () => {
-  const { isSubscriber, setIsSubscriber } = useSubscription();
-  const navigate = useNavigate();
+  try {
+    await fetch('/api/send-subscription-email', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ email: "user@example.com" }) // get user email from login context
+    });
+  } catch (err) {
+    console.error('Failed to send subscription email:', err);
+  }
 
-  const handleSubscribe = () => {
-    setIsSubscriber(true);
-    alert('Thank you for subscribing!');
-    navigate('/categories');
-  };
-
-  return (
-    <div className="subscription-container">
-      <h1>Subscription</h1>
-      <p>{isSubscriber ? "You're already a subscriber!" : "Subscribe to unlock all categories."}</p>
-      
-      {!isSubscriber && (
-        <button onClick={handleSubscribe} className="subscribe-btn">
-          Subscribe Now
-        </button>
-      )}
-    </div>
-  );
+  navigate('/categories');
 };
-
-export default Subscription;
-
