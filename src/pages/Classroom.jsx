@@ -1,8 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import '../pages css/Classroom.css';
-import io from 'socket.io-client';
-
-const socket = io('http://localhost:5000');
+import '../pages css/Classroom.css'; // Make sure folder name matches exactly!
+import { io } from 'socket.io-client';
 
 const Classroom = () => {
   const [view, setView] = useState('list');
@@ -13,16 +11,24 @@ const Classroom = () => {
   const [messages, setMessages] = useState([]);
   const [isAdmin, setIsAdmin] = useState(true);
   const [studentEmail, setStudentEmail] = useState('');
+  const [socket, setSocket] = useState(null);
 
   useEffect(() => {
-    socket.on('chat message', (msg) => {
+    const newSocket = io('http://localhost:5000');
+    setSocket(newSocket);
+
+    newSocket.on('chat message', (msg) => {
       setMessages((prev) => [...prev, msg]);
     });
-    return () => socket.off('chat message');
+
+    return () => {
+      newSocket.disconnect();
+    };
   }, []);
 
   const handleCreate = () => {
-    if (!newClassroom.heading) return;
+    if (!newClassroom.heading.trim()) return;
+
     const newRoom = {
       ...newClassroom,
       id: Date.now(),
@@ -31,46 +37,76 @@ const Classroom = () => {
       chat: [],
       admin: true,
     };
-    setClassrooms([...classrooms, newRoom]);
+
+    setClassrooms((prev) => [...prev, newRoom]);
     setNewClassroom({ heading: '', description: '' });
     setView('list');
   };
 
   const handleDelete = (id) => {
-    setClassrooms(classrooms.filter((c) => c.id !== id));
+    setClassrooms((prev) => prev.filter((c) => c.id !== id));
     setSelectedClassroom(null);
     setView('list');
   };
 
   const handleEdit = (field, value) => {
+    if (!selectedClassroom) return;
     setSelectedClassroom({ ...selectedClassroom, [field]: value });
   };
 
   const handleSaveEdit = () => {
-    setClassrooms(
-      classrooms.map((c) =>
-        c.id === selectedClassroom.id ? selectedClassroom : c
-      )
+    setClassrooms((prev) =>
+      prev.map((c) => (c.id === selectedClassroom.id ? selectedClassroom : c))
     );
     setSelectedClassroom(null);
     setView('list');
   };
 
   const sendMessage = () => {
-    if (chatInput.trim() !== '') {
-      socket.emit('chat message', chatInput);
-      setChatInput('');
+    if (chatInput.trim() === '' || !socket) return;
+    socket.emit('chat message', chatInput);
+    setChatInput('');
+  };
+
+  // Function to call backend API and send email notification
+  const sendEmailToStudent = async (email, classroomName) => {
+    try {
+      const response = await fetch('http://localhost:5000/api/sendEmailToStudent', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email, classroomName }),
+      });
+      if (!response.ok) {
+        throw new Error('Failed to send email');
+      }
+    } catch (error) {
+      alert('Error sending email notification: ' + error.message);
     }
   };
 
-  const handleAddUser = () => {
-    if (!studentEmail.trim()) return;
+  const handleAddUser = async () => {
+    if (!studentEmail.trim() || !selectedClassroom) return;
+
+    if (selectedClassroom.users.includes(studentEmail.trim())) {
+      alert('User already added!');
+      return;
+    }
+
     const updated = {
       ...selectedClassroom,
-      users: [...selectedClassroom.users, studentEmail],
+      users: [...(selectedClassroom.users || []), studentEmail.trim()],
     };
+
     setSelectedClassroom(updated);
     setStudentEmail('');
+
+    // Also update classrooms list to keep state consistent
+    setClassrooms((prev) =>
+      prev.map((c) => (c.id === updated.id ? updated : c))
+    );
+
+    // Send email notification
+    await sendEmailToStudent(studentEmail.trim(), updated.heading);
   };
 
   return (
@@ -83,6 +119,7 @@ const Classroom = () => {
       <div className="content">
         {view === 'list' && (
           <div className="classroom-list">
+            {classrooms.length === 0 && <p>No classrooms yet.</p>}
             {classrooms.map((classroom) => (
               <div
                 key={classroom.id}
@@ -90,6 +127,7 @@ const Classroom = () => {
                 onClick={() => {
                   setSelectedClassroom(classroom);
                   setView('details');
+                  setMessages([]); // Clear messages when switching classroom
                 }}
               >
                 <h3>{classroom.heading}</h3>
@@ -115,7 +153,7 @@ const Classroom = () => {
               onChange={(e) =>
                 setNewClassroom({ ...newClassroom, description: e.target.value })
               }
-            ></textarea>
+            />
             <div className="actions">
               <button onClick={handleCreate}>Save</button>
               <button onClick={() => setView('list')}>Cancel</button>
@@ -124,20 +162,20 @@ const Classroom = () => {
         )}
 
         {view === 'details' && selectedClassroom && (
-          <div className="classroom-details">
+          <div
+            className="classroom-details"
+            style={{ display: 'flex', flexDirection: 'column', minHeight: '600px' }}
+          >
             <input
               value={selectedClassroom.heading}
               onChange={(e) => handleEdit('heading', e.target.value)}
+              placeholder="Classroom Heading"
             />
             <textarea
               value={selectedClassroom.description}
               onChange={(e) => handleEdit('description', e.target.value)}
-            ></textarea>
-
-            <div className="actions">
-              <button onClick={handleSaveEdit}>💾 Save</button>
-              <button onClick={() => handleDelete(selectedClassroom.id)}>🗑️ Delete</button>
-            </div>
+              placeholder="Description"
+            />
 
             {isAdmin && (
               <div className="admin-section">
@@ -165,7 +203,7 @@ const Classroom = () => {
             <div>
               <h5>👥 Users in Class</h5>
               <ul>
-                {selectedClassroom.users.map((user, index) => (
+                {(selectedClassroom.users || []).map((user, index) => (
                   <li key={index}>{user}</li>
                 ))}
               </ul>
@@ -183,22 +221,46 @@ const Classroom = () => {
 
             <div className="chat-section">
               <h4>Classroom Chat</h4>
-              <div className="chat-box">
+              <div
+                className="chat-box"
+                style={{ maxHeight: '200px', overflowY: 'auto', border: '1px solid #ccc', padding: '8px' }}
+              >
                 {messages.map((msg, idx) => (
-                  <div key={idx} className="chat-message">{msg}</div>
+                  <div key={idx} className="chat-message">
+                    {msg}
+                  </div>
                 ))}
               </div>
               {isAdmin && (
-                <div className="chat-input">
+                <div className="chat-input" style={{ marginTop: '8px' }}>
                   <input
                     type="text"
                     value={chatInput}
                     onChange={(e) => setChatInput(e.target.value)}
                     placeholder="Type a message..."
+                    onKeyDown={(e) => {
+                      if (e.key === 'Enter') sendMessage();
+                    }}
+                    style={{ width: '80%', marginRight: '8px' }}
                   />
                   <button onClick={sendMessage}>Send</button>
                 </div>
               )}
+            </div>
+
+            {/* Save/Delete buttons moved to the bottom */}
+            <div
+              className="actions"
+              style={{
+                marginTop: 'auto',
+                paddingTop: '20px',
+                borderTop: '1px solid #ccc',
+                display: 'flex',
+                gap: '10px',
+              }}
+            >
+              <button onClick={handleSaveEdit}>💾 Save</button>
+              <button onClick={() => handleDelete(selectedClassroom.id)}>🗑️ Delete</button>
             </div>
           </div>
         )}
@@ -208,4 +270,3 @@ const Classroom = () => {
 };
 
 export default Classroom;
-
