@@ -9,7 +9,7 @@ const Sidebar = () => {
             <ul className='sidebar-links'>
                 <li><Link to='/leaderboard'>Real-Time Leaderboards</Link></li>
                 <li><Link to='/perfomance'>Perfomance Analytics</Link></li>
-                <li><Link to='/integration'>Educational Integration</Link></li>
+                <li><Link to="/classroom">Education Integration</Link></li>
             </ul>
         </div>
     )

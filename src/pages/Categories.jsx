@@ -1,250 +1,136 @@
-import React, { useState} from 'react';
-import { useNavigate } from 'react-router-dom';
-import '../pages css/Categories.css';
+.button-links {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 24px;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
 
-const Categories = () => {
-    const [searchTerm, setSearchTerm] = useState('');
-    const [showEducation, setShowEducation] = useState(false);
-    const navigate = useNavigate();
+.buttons {
+  background-color: #4fc3c9; /* slightly softer teal */
+  border: none;
+  border-radius: 14px;
+  font-size: 20px;
+  width: 200px;
+  height: 200px;
+  color: white;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: 0 6px 12px rgba(79, 195, 201, 0.4);
+  transition: background-color 0.3s ease, box-shadow 0.3s ease, transform 0.2s ease;
+}
 
-    // Function to handle search input
-    const handleSearchChange = (e) => {
-        setSearchTerm(e.target.value);
-  };
+.buttons:hover {
+  background-color: #2a9d9f;
+  box-shadow: 0 8px 20px rgba(42, 157, 159, 0.6);
+  transform: translateY(-4px);
+}
 
-  // Navigation handler
-  //const goToQuiz = (subCategory) => {
-  // navigate(`/quiz/${subCategory}`);
-  //};
+/* Modal background */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.6); /* slightly darker overlay */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+  animation: fadeInOverlay 0.3s ease forwards;
+}
 
-  const goToQuiz = (e) => {
-    navigate(`/quiz`);
-  };
+@keyframes fadeInOverlay {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
 
-    return (
-        <>
-           <div className="filter-container">
-              <input
-                type="text"
-                placeholder="Search bar"
-                value={searchTerm}
-                onChange={handleSearchChange}
-                className="search-bar"
-              />
-            </div>
+/* Modal content box */
+.modal-content {
+  background-color: #fff;
+  padding: 32px 36px;
+  border-radius: 16px;
+  max-width: 520px;
+  width: 90%;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+  animation: slideDown 0.3s ease forwards;
+}
 
-           <h1>Quiz Categories</h1>
-           <br/>
-           <ul className='button-links'>
-                <li>
-                <button className="buttons" onClick={() => setShowEducation(true)}>
-                    <strong>📚 Education</strong>
-                </button>
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
 
-                {showEducation && (
-                    <div className="modal-overlay" onClick={() => setShowEducation(false)}>
-                    <div className="modal-content" onClick={(e) => e.stopPropagation()}>
-                        <h3>📚 Education Subcategories</h3>
-                        <ul>
-                            <li>
-                                <button onClick={() => goToQuiz('Mathematics')} className="subcat-button">
-                                <strong>Mathematics</strong>
-                                </button>
-                            </li>
-                            <li>
-                                <button onClick={() => goToQuiz('Physics')} className="subcat-button">
-                                <strong>Physics</strong>
-                                </button>
-                            </li>
-                            <li>
-                                <button onClick={() => goToQuiz('Chemistry')} className="subcat-button">
-                                <strong>Chemistry</strong>
-                                </button>
-                            </li>
-                            <li>
-                                <button onClick={() => goToQuiz('Biology')} className="subcat-button">
-                                <strong>Biology</strong>
-                                </button>
-                            </li>
-                            <li>
-                                <button onClick={() => goToQuiz('History')} className="subcat-button">
-                                <strong>History</strong>
-                                </button>
-                            </li>
-                            <li>
-                                <button onClick={() => goToQuiz('Geography')} className="subcat-button">
-                                <strong>Geography</strong>
-                                </button>
-                            </li>
-                            <li>
-                                <button onClick={() => goToQuiz('Language & Grammar')} className="subcat-button">
-                                <strong>Language & Grammar</strong>
-                                </button>
-                            </li>
-                            <li>
-                                <button onClick={() => goToQuiz('Technology')} className="subcat-button">
-                                <strong>Technology</strong>
-                                </button>
-                            </li>
-                            <li>
-                                <button onClick={() => goToQuiz('Literature')} className="subcat-button">
-                                <strong>Literature</strong>
-                                </button>
-                            </li>
-                            </ul>
-                            <button className="close-button" onClick={() => setShowEducation(false)}>Close</button>
-                    </div>
-                    </div>
-                            )}
-                </li>
+/* Close button */
+.close-button {
+  margin-top: 24px;
+  padding: 10px 20px;
+  background-color: #4fc3c9;
+  border: none;
+  color: white;
+  font-weight: 700;
+  border-radius: 8px;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(79, 195, 201, 0.5);
+  transition: background-color 0.3s ease, box-shadow 0.3s ease, transform 0.15s ease;
+  display: inline-block;
+}
 
+.close-button:hover {
+  background-color: #2a9d9f;
+  box-shadow: 0 6px 16px rgba(42, 157, 159, 0.7);
+  transform: translateY(-2px);
+}
 
-               <li>
-                <button className="buttons" onClick={() => setShowEducation(true)}>
-                    <strong>💼 Career</strong>
-                </button>
+.subcat-button {
+  background: transparent;
+  border: none;
+  text-align: left;
+  padding: 12px 0;
+  cursor: pointer;
+  width: 100%;
+  font-size: 1.05rem;
+  color: #444;
+  font-weight: 500;
+  transition: color 0.3s ease, text-decoration 0.3s ease;
+}
 
-                {showEducation && (
-                    <div className="modal-overlay" onClick={() => setShowEducation(false)}>
-                    <div className="modal-content" onClick={(e) => e.stopPropagation()}>
-                        <h3>💼 Career Subcategories</h3>
-                        <ul>
-                            <li>
-                                <button onClick={() => goToQuiz('Coding & Programming')} className="subcat-button">
-                                <strong>Coding & Programming</strong>
-                                </button>
-                            </li>
-                            <li>
-                                <button onClick={() => goToQuiz('Digital Marketing')} className="subcat-button">
-                                <strong>Digital Marketing</strong>
-                                </button>
-                            </li>
-                            <li>
-                                <button onClick={() => goToQuiz('Business & Finance')} className="subcat-button">
-                                <strong>Business & Finance</strong>
-                                </button>
-                            </li>
-                            <li>
-                                <button onClick={() => goToQuiz('Communication Skills')} className="subcat-button">
-                                <strong>Communication Skills</strong>
-                                </button>
-                            </li>
-                            <li>
-                                <button onClick={() => goToQuiz('Job Interview Prep')} className="subcat-button">
-                                <strong>Job Interview Prep</strong>
-                                </button>
-                            </li>
-                            <li>
-                                <button onClick={() => goToQuiz('Project Management')} className="subcat-button">
-                                <strong>Project Management</strong>
-                                </button>
-                            </li>
-                            </ul>
-                            <button className="close-button" onClick={() => setShowEducation(false)}>Close</button>
-                    </div>
-                    </div>
-                            )}
-                </li>
-           </ul>
-           <ul className='button-links'>
-               <li>
-                <button className="buttons" onClick={() => setShowEducation(true)}>
-                    <strong>🎮 Gaming</strong>
-                </button>
+.subcat-button:hover {
+  color: #2a9d9f;
+  text-decoration: underline;
+}
+.subscription-banner {
+  background-color: #fff4cc;
+  padding: 15px;
+  margin-bottom: 20px;
+  border-left: 5px solid #ffc107;
+  border-radius: 5px;
+  text-align: center;
+}
 
-                {showEducation && (
-                    <div className="modal-overlay" onClick={() => setShowEducation(false)}>
-                    <div className="modal-content" onClick={(e) => e.stopPropagation()}>
-                        <h3>🎮 Gaming Subcategories</h3>
-                        <ul>
-                            <li>
-                                <button onClick={() => goToQuiz('Console Gaming')} className="subcat-button">
-                                <strong>Console Gaming</strong>
-                                </button>
-                            </li>
-                            <li>
-                                <button onClick={() => goToQuiz('PC Gaming')} className="subcat-button">
-                                <strong>PC Gaming</strong>
-                                </button>
-                            </li>
-                            <li>
-                                <button onClick={() => goToQuiz('Game History')} className="subcat-button">
-                                <strong>Game History</strong>
-                                </button>
-                            </li>
-                            <li>
-                                <button onClick={() => goToQuiz('Popular Franchises')} className="subcat-button">
-                                <strong>Popular Franchises</strong>
-                                </button>
-                            </li>
-                            </ul>
-                            <button className="close-button" onClick={() => setShowEducation(false)}>Close</button>
-                    </div>
-                    </div>
-                            )}
-                </li>
+.subscribe-button {
+  margin-top: 10px;
+  padding: 8px 16px;
+  background-color: #ff9800;
+  color: white;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+}
 
-               <li>
-                <button className="buttons" onClick={() => setShowEducation(true)}>
-                    <strong>⚽ Sport</strong>
-                </button>
-
-                {showEducation && (
-                    <div className="modal-overlay" onClick={() => setShowEducation(false)}>
-                    <div className="modal-content" onClick={(e) => e.stopPropagation()}>
-                        <h3>⚽ Sport Subcategories</h3>
-                        <ul>
-                            <li>
-                                <button onClick={() => goToQuiz('Soccer / Football')} className="subcat-button">
-                                <strong>Soccer / Football</strong>
-                                </button>
-                            </li>
-                            <li>
-                                <button onClick={() => goToQuiz('Rugby')} className="subcat-button">
-                                <strong>Rugby</strong>
-                                </button>
-                            </li>
-                            <li>
-                                <button onClick={() => goToQuiz('Martial Arts')} className="subcat-button">
-                                <strong>Martial Arts</strong>
-                                </button>
-                            </li>
-                            <li>
-                                <button onClick={() => goToQuiz('Basketball')} className="subcat-button">
-                                <strong>Basketball</strong>
-                                </button>
-                            </li>
-                            <li>
-                                <button onClick={() => goToQuiz('Athletics')} className="subcat-button">
-                                <strong>Athletics</strong>
-                                </button>
-                            </li>
-                            <li>
-                                <button onClick={() => goToQuiz('Cricket')} className="subcat-button">
-                                <strong>Cricket</strong>
-                                </button>
-                            </li>
-                            <li>
-                                <button onClick={() => goToQuiz('Tennis')} className="subcat-button">
-                                <strong>Tennis</strong>
-                                </button>
-                            </li>
-                            <li>
-                                <button onClick={() => goToQuiz('Golf')} className="subcat-button">
-                                <strong>Golf</strong>
-                                </button>
-                            </li>
-                            </ul>
-                            <button className="close-button" onClick={() => setShowEducation(false)}>Close</button>
-                    </div>
-                    </div>
-                            )}
-                </li>
-           </ul>
-           
-           
-        </>
-    )
-};
-
-export default Categories;
+.subscribe-button:hover {
+  background-color: #f57c00;
+}
