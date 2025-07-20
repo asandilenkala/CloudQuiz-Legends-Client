@@ -15,7 +15,7 @@ const SignInForm = () => {
     const { name, value } = e.target;
     setFormData(prev => ({
       ...prev,
-      [name]: value
+      [name]: value // Removed .trim()
     }));
   };
 
@@ -24,28 +24,52 @@ const SignInForm = () => {
     setLoading(true);
     setError('');
 
+    console.log('Submitting login with:', formData);
+
     try {
-      const response = await fetch('https://pjvhyb29se.execute-api.us-east-1.amazonaws.com/dev/login', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(formData)
-      });
+      const response = await fetch(
+        'https://pjvhyb29se.execute-api.us-east-1.amazonaws.com/dev/login',
+        {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(formData)
+        }
+      );
+
+      const data = await response.json();
+
+      // Parse the 'body' field from API Gateway response
+      let parsedBody = data;
+      if (data.body) {
+        try {
+          parsedBody = JSON.parse(data.body);
+        } catch (err) {
+          console.error('Failed to parse response body:', err);
+          setError('Server returned invalid response.');
+          setLoading(false);
+          return;
+        }
+      }
+
+      console.log('Parsed backend body:', parsedBody);
 
       if (response.ok) {
-        const data = await response.json();
-        console.log('Login Success:', data);
+        // Your backend consistently returns 'user' in the parsedBody for successful logins
+        // so this check is correct for the current backend logic.
+        if (!parsedBody.user) {
+          setError('User data not found in response, despite successful status.');
+          console.error('Login failed: User object not found in parsed backend response.');
+          setLoading(false);
+          return;
+        }
 
-        // Store user data in localStorage for session handling
-        localStorage.setItem('user', JSON.stringify(data.user));
-
-        // Navigate to home/dashboard on successful login
+        // Successful login
+        localStorage.setItem('user', JSON.stringify(parsedBody.user));
         navigate('/home');
       } else {
-        const errorData = await response.json();
-        console.error('Login Failed:', errorData);
-        setError(errorData.message || 'Login failed. Please try again.');
+        setError(parsedBody.message || 'Login failed. Please try again.');
       }
     } catch (err) {
       console.error('Error:', err);
@@ -66,6 +90,7 @@ const SignInForm = () => {
           value={formData.email}
           onChange={handleChange}
           required
+          autoComplete="username"
         />
 
         <input
@@ -75,6 +100,7 @@ const SignInForm = () => {
           value={formData.password}
           onChange={handleChange}
           required
+          autoComplete="current-password"
         />
 
         {error && <p className="error-message">{error}</p>}
