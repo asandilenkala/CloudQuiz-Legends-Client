@@ -40,8 +40,3 @@
     ]
   }
 }
-"homepage": "https://github.com/asandilenkala/CloudQuiz-Legends-Client",
-"scripts": {
-  "predeploy": "npm run build",
-  "deploy": "gh-pages -d build"
-}
