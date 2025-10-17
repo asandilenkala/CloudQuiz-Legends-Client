@@ -1,8 +1,3 @@
-"homepage": "https://github.com/asandilenkala/CloudQuiz-Legends-Client",
-"scripts": {
-  "predeploy": "npm run build",
-  "deploy": "gh-pages -d build"
-}
 {
   "name": "my-react-app",
   "version": "0.1.0",
@@ -44,4 +39,9 @@
       "last 1 safari version"
     ]
   }
+}
+"homepage": "https://github.com/asandilenkala/CloudQuiz-Legends-Client",
+"scripts": {
+  "predeploy": "npm run build",
+  "deploy": "gh-pages -d build"
 }
