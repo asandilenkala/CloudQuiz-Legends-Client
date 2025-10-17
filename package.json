@@ -1,3 +1,8 @@
+"homepage": "https://asandilenkala.github.io/CloudQuiz-Legends-Client",
+"scripts": {
+  "predeploy": "npm run build",
+  "deploy": "gh-pages -d build"
+}
 {
   "name": "my-react-app",
   "version": "0.1.0",
