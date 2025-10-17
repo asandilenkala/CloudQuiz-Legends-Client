@@ -1,4 +1,4 @@
-"homepage": "https://asandilenkala.github.io/CloudQuiz-Legends-Client",
+"homepage": "https://github.com/asandilenkala/CloudQuiz-Legends-Client",
 "scripts": {
   "predeploy": "npm run build",
   "deploy": "gh-pages -d build"
